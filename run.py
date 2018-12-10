@@ -66,3 +66,11 @@ def save_to_mongo(result):
     '''
     if collection.insert(result):
         print('保存到mongodb数据库中.....')
+
+if __name__ == '__main__':
+    for page in range(1, max_page + 1):
+        json = get_page(page)
+        results = parse_page(*json)
+        for result in results:
+            print(result)
+            save_to_mongo(result)
