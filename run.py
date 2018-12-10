@@ -57,3 +57,12 @@ def parse_page(json, page:int):
                 weibo['评论数'] = item.get('comments_count')
                 weibo['转发量'] = item.get('reposts_count')
                 yield weibo
+
+def save_to_mongo(result):
+    '''
+    保存结果到Mongodb数据库中
+    :param result:
+    :return:
+    '''
+    if collection.insert(result):
+        print('保存到mongodb数据库中.....')
